@@ -1,50 +1,90 @@
-# Welcome to your Expo app 👋
+# 🌾 **Farm2You**  
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+**Farm2You** is a local produce marketplace that connects farmers and consumers, promoting fresh, locally sourced food while reducing waste. The platform enables farmers to list their products and provides real-time insights to optimize their operations.
 
-## Get started
+## 🚀 **Features**  
 
-1. Install dependencies
+### 🛍️ **For Customers**  
+- Browse and purchase fresh, locally grown produce.  
+- Pre-order items for pickup or delivery.  
+- Explore an **Imperfect Produce Section** for budget-friendly, sustainable choices.  
 
-   ```bash
-   npm install
-   ```
+### 👨‍🌾 **For Farmers**  
+- List products with images, descriptions, and prices.  
+- Get **real-time weather insights** and **crop suggestions** powered by OpenWeatherMap and a **custom AI assistant** trained with USDA data.  
+- Manage inventory, track orders, and view analytics via a **farmer dashboard**.  
 
-2. Start the app
+### 🔄 **Other Key Features**  
+- **Real-time updates** using Firebase.  
+- **Secure authentication** for both farmers and customers.  
+- **Sustainability tracker** to measure food waste reduction.  
 
-   ```bash
-    npx expo start
-   ```
+## 🛠️ **How We Built It**  
+- **Frontend:** React Native (for cross-platform mobile support).  
+- **Backend & Database:** Firebase (for real-time updates, authentication, and data management).  
+- **Weather & AI Insights:** OpenWeatherMap API + GPT-4o Mini (enhanced with USDA knowledge for better crop recommendations).  
 
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+## 📂 **Project Structure**  
+```
+Farm2You/
+│── app/
+│   ├── cart.tsx
+│   ├── _layout.tsx
+│   ├── +not-found.tsx
+│   ├── CartContext.tsx
+│   ├── checkout.tsx
+│   ├── explore.tsx
+│   ├── farmer.tsx
+│   ├── index.tsx
+│   ├── login.tsx
+│   ├── marketplace.tsx
+│   ├── signup.tsx
+│   ├── user.tsx
+│   ├── weather.tsx
+│── assets/
+│── components/
+│── constants/
+│── Farmers/
+│── hooks/
+│── scripts/
+│── .env
+│── .gitignore
+│── App.js
+├── fast_api.py
+├── knowledge-database.json
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## 🏗️ **Getting Started**  
 
-## Learn more
+### 1️⃣ Clone the Repository  
+```bash
+git clone https://github.com/your-username/Farm2You.git
+cd Farm2You
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+### 2️⃣ Install Dependencies  
+```bash
+npm install
+```
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+### 3️⃣ Set Up Firebase  
+- Create a **Firebase** project.  
+- Enable **Authentication** and **Firestore Database**.  
+- Add your Firebase config in `.env`.  
 
-## Join the community
+### 4️⃣ Start the App  
+```bash
+npm start
+```
 
-Join our community of developers creating universal apps.
+## 📌 **Future Enhancements**  
+- Expand the **sustainability tracker** with more detailed insights.  
+- Implement **AI-powered personalized crop recommendations** for farmers.  
+- Introduce **subscription-based produce deliveries** for customers.  
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+---
+## 📌 **Contributors**  
+Katha Mehta 
+Akriti Saxena
+Nishi Mewada
+Deepiga Sengottuvelu Ravichandran
