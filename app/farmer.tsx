@@ -28,6 +28,7 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useRouter } from "expo-router";
 import { Picker } from '@react-native-picker/picker';
 import { RadioButton } from 'react-native-paper';
+import WeatherScreen from "./weather"
 
 interface GrowingItem {
   id: string
@@ -565,97 +566,14 @@ export default function FarmerScreen({ navigation }: Props) {
     )
   }
 
-  const renderWeatherTab = () => (
-    <ScrollView>
-      <View style={styles.weatherContainer}>
-        <View style={styles.currentWeatherCard}>
-          <Text style={styles.sectionTitle}>Current Weather</Text>
-          <View style={styles.weatherInfo}>
-            <Ionicons name="partly-sunny" size={40} color="#FFA500" />
-            <View style={styles.weatherDetails}>
-              <Text style={styles.temperature}>75°F | Partly Cloudy</Text>
-              <Text style={styles.humidity}>Humidity: 65%</Text>
-              <Text style={styles.windSpeed}>Wind: 8 mph NE</Text>
-            </View>
-          </View>
-        </View>
-  
-        <View style={styles.alertCard}>
-          <Text style={styles.cardTitle}>
-            <Ionicons name="warning-outline" size={24} color="#FF4136" style={styles.cardIcon} />
-            Weather Alerts
-          </Text>
-          <View style={styles.alertItem}>
-            <Text style={styles.alertTitle}>Frost Warning</Text>
-            <Text style={styles.alertDescription}>
-              Expected tonight. Protect sensitive crops with frost blankets.
-            </Text>
-          </View>
-          <View style={styles.alertItem}>
-            <Text style={styles.alertTitle}>Heavy Rain Alert</Text>
-            <Text style={styles.alertDescription}>
-              80% chance of heavy rainfall tomorrow. Secure young plants and ensure proper drainage.
-            </Text>
-          </View>
-        </View>
-  
-        <View style={styles.cropRecommendationCard}>
-          <Text style={styles.cardTitle}>
-            <Ionicons name="leaf-outline" size={24} color="#28A745" style={styles.cardIcon} />
-            Crop Recommendations
-          </Text>
-          <View style={styles.recommendationItem}>
-            <Text style={styles.cropType}>Root Vegetables</Text>
-            <Text style={styles.recommendationText}>
-              • Ideal time to plant carrots and potatoes
-              • Soil temperature optimal at 65°F
-            </Text>
-          </View>
-          <View style={styles.recommendationItem}>
-            <Text style={styles.cropType}>Tomatoes</Text>
-            <Text style={styles.recommendationText}>
-              • Move sensitive varieties to greenhouse
-              • Add extra mulch for frost protection
-            </Text>
-          </View>
-          <View style={styles.recommendationItem}>
-            <Text style={styles.cropType}>Leafy Greens</Text>
-            <Text style={styles.recommendationText}>
-              • Cover lettuce beds before frost
-              • Monitor soil moisture due to incoming rain
-            </Text>
-          </View>
-        </View>
-  
-        <View style={styles.forecastCard}>
-          <Text style={styles.cardTitle}>
-            <Ionicons name="calendar-outline" size={24} color="#0074D9" style={styles.cardIcon} />
-            3-Day Forecast
-          </Text>
-          <View style={styles.forecastContainer}>
-            <View style={styles.forecastDay}>
-              <Text style={styles.dayText}>Today</Text>
-              <Ionicons name="partly-sunny" size={30} color="#FFA500" />
-              <Text style={styles.tempText}>75°F</Text>
-              <Text style={styles.weatherText}>Partly Cloudy</Text>
-            </View>
-            <View style={styles.forecastDay}>
-              <Text style={styles.dayText}>Tomorrow</Text>
-              <Ionicons name="rainy" size={30} color="#0074D9" />
-              <Text style={styles.tempText}>68°F</Text>
-              <Text style={styles.weatherText}>Heavy Rain</Text>
-            </View>
-            <View style={styles.forecastDay}>
-              <Text style={styles.dayText}>Monday</Text>
-              <Ionicons name="sunny" size={30} color="#FFA500" />
-              <Text style={styles.tempText}>72°F</Text>
-              <Text style={styles.weatherText}>Clear</Text>
-            </View>
-          </View>
-        </View>
-      </View>
-    </ScrollView>
-  )
+
+  const renderWeatherTab = (products: any[] ) => {
+    return (
+      <WeatherScreen 
+        growingItems={products.filter((p) => p.isGrowing)}
+      />
+    );
+  }
 
   const pickImage = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
@@ -717,7 +635,7 @@ export default function FarmerScreen({ navigation }: Props) {
         {activeTab === "products" && renderProductsTab(false)}
         {activeTab === "discounted" && renderProductsTab(true)}
         {/* {activeTab === "ai" && renderAIAnalysisTab()} */}
-        {activeTab === "weather" && renderWeatherTab()}
+        {activeTab === "weather" && renderWeatherTab(products)}
       </View>
 
       {/* Add/Edit Product Modal */}
@@ -869,6 +787,43 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: "bold",
   },
+  weatherContainer: {
+    flex: 1,
+    width: '100%',
+    backgroundColor: '#f5f5f5',
+    padding: 16,
+  },
+  emptyStateContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    backgroundColor: '#ffffff',
+    borderRadius: 12,
+    marginVertical: 10,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 3,
+    elevation: 3,
+  },
+  emptyStateText: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#333',
+    marginTop: 16,
+    textAlign: 'center',
+  },
+  emptyStateSubtext: {
+    fontSize: 14,
+    color: '#666',
+    marginTop: 8,
+    textAlign: 'center',
+    paddingHorizontal: 20,
+  },
   iconContainer: {
     flexDirection: "row",
   },
@@ -878,6 +833,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginLeft: 10,
   },
+  
   navMenu: {
     flexDirection: "row",
     padding: 10,
@@ -1342,10 +1298,6 @@ const styles = StyleSheet.create({
       color: "red",
       marginBottom: 5,
       fontSize: 16, 
-    },
-    weatherContainer: {
-      flex: 1,
-      padding: 15,
     },
     currentWeatherCard: {
       backgroundColor: '#FFF',

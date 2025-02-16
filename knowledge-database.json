@@ -1,0 +1,57 @@
+{
+    "weather_conditions": {
+        "heavy_rain": {
+            "affected_crops": [
+                "Wheat", "Corn", "Tomato", "Potato", "Rice", "Barley", "Beans", "Peanuts",
+                "Peas", "Soybeans", "Oats", "Sugarcane", "Grapes", "Lettuce", "Cabbage",
+                "Spinach", "Cauliflower", "Celery", "Onions", "Peppers"
+            ],
+            "reason": "Excess water can cause root rot, fungal diseases, and hinder proper growth."
+        },
+        "drought": {
+            "affected_crops": [
+                "Rice", "Lettuce", "Strawberries", "Sugarcane", "Peaches", "Peas", "Apricots",
+                "Almonds", "Avocados", "Bananas", "Papayas", "Melons", "Tomatoes", "Spinach",
+                "Peppers", "Citrus Totals", "Grapefruit"
+            ],
+            "reason": "These crops require high water levels; drought stress can reduce yields significantly."
+        },
+        "frost": {
+            "affected_crops": [
+                "Bananas", "Tomato", "Sugarcane", "Citrus Totals", "Coffee", "Avocados",
+                "Pineapples", "Papayas", "Peppers", "Pumpkins", "Melons", "Peanuts", "Soybeans",
+                "Sweet Potatoes", "Ginger Root"
+            ],
+            "reason": "Frost can damage plant tissues, disrupt growth, and kill sensitive plants."
+        },
+        "heat_wave": {
+            "affected_crops": [
+                "Wheat", "Barley", "Lettuce", "Corn", "Oats", "Sugarbeets", "Broccoli",
+                "Carrots", "Cabbage", "Cucumbers", "Onions", "Peppers", "Potatoes",
+                "Tobacco", "Beans", "Squash"
+            ],
+            "reason": "Extreme heat can cause dehydration, leaf burn, and affect flowering."
+        },
+        "hailstorm": {
+            "affected_crops": [
+                "Corn", "Soybeans", "Cabbage", "Lettuce", "Tobacco", "Sunflower",
+                "Rye", "Potatoes", "Squash", "Apples", "Peaches", "Plums", "Nectarines"
+            ],
+            "reason": "Hail can physically damage plants, break stems, and reduce crop yield."
+        },
+        "high_humidity": {
+            "affected_crops": [
+                "Wheat", "Peanut", "Potato", "Soybeans", "Tomatoes", "Peppers", "Sugarcane",
+                "Citrus Totals", "Blueberries", "Strawberries", "Raspberries", "Mushrooms"
+            ],
+            "reason": "High humidity increases fungal and bacterial infections."
+        },
+        "strong_winds": {
+            "affected_crops": [
+                "Maize", "Sunflower", "Banana", "Sugarcane", "Cotton", "Citrus Totals",
+                "Olives", "Tobacco", "Grapes", "Walnuts", "Hops", "Mint", "Mustard"
+            ],
+            "reason": "Strong winds can uproot plants, break stems, and damage leaves."
+        }
+    }
+}

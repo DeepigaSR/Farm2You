@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useEffect }  from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
+import { useCart } from "./CartContext";  // Import useCart
 
 export default function ReceiptScreen() {
   const router = useRouter();
+  const { setCart } = useCart();
+  const handleGoToDashboard = () => {
+    setCart({}); //Clear the cart
+    router.replace("/user"); // Navigate to the user page
+  };
+  // useEffect(() => {
+  //   setCart({});
+  // }, []);
+  useEffect(() => {
+    setCart((prevCart) => (Object.keys(prevCart).length > 0 ? {} : prevCart));
+  }, []);
 
   return (
     <View style={styles.container}>

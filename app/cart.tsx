@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, FlatList, Image, TouchableOpacity, StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
-import { useCart } from "./CartContext"; // Global cart state
+import { useCart } from "./CartContext"; 
 import { collection, getDocs, query, where } from "firebase/firestore";
-import { db } from "../firebaseConfig"; // Firestore config
+import { db } from "../firebaseConfig";
 
-// Define TypeScript interface for cart items
 interface CartItem {
   id: string;
   name: string;
@@ -34,7 +33,7 @@ export default function CartScreen() {
           name: doc.data().name || "Unknown",
           price: doc.data().price || 0,
           imageUrl: doc.data().imageUrl || "",
-          quantity: itemsWithQty[doc.id] || 1, // Preserve cart quantity
+          quantity: itemsWithQty[doc.id] || 1, 
         })) as CartItem[];
       } catch (error) {
         console.error("Error fetching items:", error);
@@ -48,7 +47,7 @@ export default function CartScreen() {
     };
 
     fetchData();
-  }, [cart]); // Fetch whenever the cart updates
+  }, [cart]); 
 
   const totalAmount = cartItems
     .reduce((total, item) => total + item.price * item.quantity, 0)
@@ -61,7 +60,7 @@ export default function CartScreen() {
       {cartItems.length > 0 ? (
         <FlatList
           data={cartItems}
-          keyExtractor={(item) => item.id.toString()} // Ensure keyExtractor is a string
+          keyExtractor={(item) => item.id.toString()} 
           renderItem={({ item }: { item: CartItem }) => (
             <View style={styles.cartItem}>
               <Image source={{ uri: item.imageUrl }} style={styles.image} />
@@ -71,9 +70,8 @@ export default function CartScreen() {
               </View>
               <TouchableOpacity
                 onPress={() => {
-                  updateCart(item.id, -1); // Decrease quantity
+                  updateCart(item.id, -1);
                   if (cart[item.id] === 1) {
-                    // If this is the last quantity, remove from UI
                     setCartItems(cartItems.filter(cartItem => cartItem.id !== item.id));
                   }
                 }}
@@ -101,7 +99,6 @@ export default function CartScreen() {
   );
 }
 
-// ✅ Styles for Cart UI
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -181,7 +178,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
   },
-
   proceedButton: {
     backgroundColor: "#008000",
     padding: 12,
