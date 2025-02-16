@@ -1,11 +1,11 @@
 import { Stack } from "expo-router";
 import { CartProvider } from "./CartContext"; // Import CartProvider
-import { View } from "react-native"; // Ensure all components are properly wrapped
-
+import { View } from "react-native"; // ensuring all components are properly wrapped
 export default function RootLayout() {
   return (
+    <View style={{ flex: 1 }}> 
     <CartProvider>  
-      <View style={{ flex: 1 }}>  {/* Ensure root component is a View */}
+       {/* Ensure root component is a View */}
         <Stack>
           <Stack.Screen name="index" options={{ headerShown: false }} />
           <Stack.Screen name="login" options={{ headerShown: false }} />
@@ -14,8 +14,9 @@ export default function RootLayout() {
           <Stack.Screen name="farmer" options={{ headerShown: false }} />
           <Stack.Screen name="cart" options={{ headerShown: false }} />
           <Stack.Screen name="checkout" options={{ headerShown: false }} />
+          <Stack.Screen name="receipt" options={{ headerShown: false }} />
         </Stack>
-      </View>
     </CartProvider>
+    </View>
   );
 }

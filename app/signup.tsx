@@ -2,7 +2,7 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, Switch, Alert, Key
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import LottieView from "lottie-react-native";
-import { auth, db } from "../firebaseConfig"; // Firestore DB
+import { auth, db } from "../firebaseConfig";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { collection, doc, setDoc } from "firebase/firestore";
 import { Ionicons } from "@expo/vector-icons";

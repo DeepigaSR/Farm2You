@@ -2,10 +2,10 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, KeyboardAvo
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import LottieView from "lottie-react-native";
-import { auth, db } from "../firebaseConfig"; // Firestore DB
+import { auth, db } from "../firebaseConfig"; 
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
-import { Ionicons } from "@expo/vector-icons"; // Import icon for back button
+import { Ionicons } from "@expo/vector-icons"; 
 
 export default function LoginScreen() {
   const router = useRouter();

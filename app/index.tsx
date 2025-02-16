@@ -1,11 +1,26 @@
+import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView } from "react-native";
 import { useRouter } from "expo-router";
 import LottieView from "lottie-react-native";
+import { useFonts, Baloo2_700Bold } from "@expo-google-fonts/baloo-2";
+import * as SplashScreen from "expo-splash-screen";
+
+SplashScreen.preventAutoHideAsync();
 
 export default function LandingPage() {
   const router = useRouter();
 
-  const navigateTo = (path : string) => {
+  const [fontsLoaded] = useFonts({
+    Baloo: Baloo2_700Bold, 
+  });
+
+  if (!fontsLoaded) {
+    return null; // prevent rendering before font loads
+  } else {
+    SplashScreen.hideAsync(); 
+  }
+
+  const navigateTo = (path: string) => {
     try {
       router.push(path as any);
     } catch (error) {
@@ -15,6 +30,11 @@ export default function LandingPage() {
 
   return (
     <SafeAreaView style={styles.container}>
+      {/* Box for "Farm Fresh, Waste Less" */}
+      <View style={styles.bannerBox}>
+        <Text style={styles.bannerText}>Farm Fresh, Waste Less</Text>
+      </View>
+
       {/* Animation */}
       <LottieView 
         source={require("../assets/animations/FarmAnimation1.json")}
@@ -24,7 +44,7 @@ export default function LandingPage() {
       />
       
       {/* App Name */}
-      <Text style={styles.title}>Farmer's Market</Text>
+      <Text style={styles.title}>Farm2You</Text>
 
       {/* Login Button */}
       <TouchableOpacity style={styles.button} onPress={() => navigateTo("/login")}>
@@ -47,16 +67,43 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 20,
   },
+  bannerBox: {
+    backgroundColor: "rgba(255, 255, 255, 0.7)", 
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    borderRadius: 30,
+    position: "absolute",
+    top: 150, 
+    left: "8%",
+    right: "8%",
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+    elevation: 3,
+  },
+  bannerText: {
+    fontSize: 22,
+    fontWeight: "bold",
+    color: "#9932CC", // deep purple 
+    textAlign: "center",
+    fontFamily: "Avenir",
+  },
   animation: {
     width: "100%",
     height: 400,
-    marginBottom: -30,
+    marginTop: 30,
+    marginBottom: -80,
   },
   title: {
-    fontSize: 32,
+    fontFamily: "Baloo", //  Baloo font for chubby like font
+    fontSize: 50,
     fontWeight: "bold",
-    marginBottom: 20,
+    marginBottom: 40,
     textAlign: "center",
+    marginTop: 10,
+    color: "#9932CC",
   },
   button: {
     backgroundColor: "#FFA500",
